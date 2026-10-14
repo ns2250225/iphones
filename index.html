@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>iPhone 博物馆</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" class="logo"><path id="logoPath" fill="currentColor"/></svg>
+      <div>
+        <h1>iPhone 博物馆</h1>
+        <p>2007 — 2026 · 27 件可交互的 3D 展品</p>
+      </div>
+    </div>
+    <nav class="modes">
+      <button data-mode="focus" class="on">展品详情</button>
+      <button data-mode="lineup">全家福<span class="long"> · 尺寸对比</span></button>
+      <button id="helpBtn" class="ghost" title="操作说明">?</button>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <aside class="timeline" id="timeline"></aside>
+
+    <main class="stage" id="stage">
+      <div class="stage-glow"></div>
+      <div class="loading" id="loading">正在载入展厅…</div>
+      <div class="toast" id="toast"></div>
+      <div class="tip" id="tip"></div>
+      <div class="labels" id="labels"></div>
+
+      <div class="views" id="views">
+        <button data-view="front">正面</button>
+        <button data-view="back">背面</button>
+        <button data-view="side">侧面</button>
+        <button data-view="three">斜视</button>
+        <button data-view="bottom">底部</button>
+        <button id="autoRot" class="on" title="空闲时自动旋转">↻ 自动</button>
+      </div>
+
+      <div class="lineup-bar" id="lineupBar">
+        <span>滚轮 / 拖动浏览 · 点击任意一台进入详情</span>
+        <button id="flipAll">翻转到背面</button>
+        <input type="range" id="lineupRange" min="0" max="1000" value="0">
+      </div>
+
+      <div class="controls" id="controls">
+        <div class="state"><i id="stateDot"></i><span id="stateText">已关机</span></div>
+        <div class="btns">
+          <button id="bPower" title="单击：开机 / 锁屏；长按：关机菜单"><b>⏻</b><span id="bPowerLabel">电源键</span></button>
+          <button id="bHome"><b>◯</b><span>主屏幕</span></button>
+          <button id="bVolUp"><b>＋</b><span>音量</span></button>
+          <button id="bVolDown"><b>－</b><span>音量</span></button>
+          <button id="bMute"><b>🔔</b><span id="bMuteLabel">静音</span></button>
+          <button id="bCam"><b>◉</b><span>相机控制</span></button>
+          <button id="bFold" hidden><b>▭</b><span>展开</span></button>
+          <button id="bUnlock"><b>🔓</b><span>快速解锁</span></button>
+        </div>
+      </div>
+    </main>
+
+    <section class="info" id="info"></section>
+  </div>
+
+  <div class="modal" id="help" hidden>
+    <div class="card">
+      <h3>操作说明</h3>
+      <ul>
+        <li><b>旋转 / 缩放</b>：拖动旋转机身，滚轮缩放；右上角可切换正面、背面、侧面视角。</li>
+        <li><b>开机</b>：直接点击 3D 机身上的电源键（老机型在顶部，iPhone 6 起在右侧），或点下方的「电源键」。再次单击可锁屏 / 唤醒，<b>长按</b>弹出「滑动来关机」。</li>
+        <li><b>解锁</b>：和真机一样操作。iOS 1–6 拖动滑块，iOS 7–9 向右滑，iPhone 7/8 按主屏幕按钮（Touch ID），全面屏机型从底部上滑（Face ID）。</li>
+        <li><b>屏幕</b>：开机后可以直接点按、滑动 3D 屏幕。计算器能计算，相机能拍照，电话能拨号，音乐能暂停。</li>
+        <li><b>实体按键</b>：音量键、静音拨片（会真的拨动）、操作按钮、相机控制都能点击。</li>
+        <li><b>折叠屏</b>：iPhone Duo 可点「展开 / 合上」开合，开机状态下界面会在 5.4 英寸外屏和 7.6 英寸内屏之间切换；侧边按钮内置触控 ID，按下即唤醒并解锁。</li>
+        <li><b>键盘</b>：← → 切换展品，P 电源键，H 主屏幕，F 开合折叠屏。</li>
+      </ul>
+      <p class="note">所有机型都根据公开资料（Apple 技术规格、Wikipedia、GSMArena 等）中的真实尺寸，在浏览器里实时建模，比例与实物一致。</p>
+      <button id="helpClose">知道了</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/environments/RoomEnvironment.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/model.js"></script>
+  <script src="js/os.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
